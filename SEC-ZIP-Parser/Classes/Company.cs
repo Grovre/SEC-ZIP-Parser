@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
+using SEC_ZIP_Parser.Classes.Enums;
 
 namespace SEC_ZIP_Parser.Classes
 {
     public class Company
     {
-        private CompanyAddress? businessAddress;
-        private CompanyAddress? mailingAddress;
+        private CompanyAddress[] addresses;
         private string category;
         private string cik;
         private string description;
