@@ -9,19 +9,32 @@ namespace SEC_ZIP_Parser.Classes.Json
 {
     public class CompanyJsonParser
     {
-        public static Company ParseGeneralSubmissionCompany(string jsonFilePath)
+        public string JsonFilePath { get; }
+
+        public CompanyJsonParser(string jsonPath)
         {
-            var json = File.ReadAllLines(jsonFilePath)[0];
+            JsonFilePath = jsonPath;
+        }
+
+        public Company Parse()
+        {
+            var co = new Company();
+            ParseTo(ref co);
+            return co;
+        }
+
+        public void ParseTo(ref Company dst)
+        {
+            var json = File.ReadAllLines(JsonFilePath)[0];
             var doc = JsonDocument.Parse(json);
             var root = doc.RootElement;
-            var parser = new CompanyJsonParser();
             
-            var addresses = parser.GetAddresses(root);
-            var category = parser.SafeStringRetrievalFromProperty(root, JsonPropertyNames.CompanyCategory);
-            var cik = parser.SafeStringRetrievalFromProperty(root, JsonPropertyNames.CentralIndexKey);
-            var desc = parser.SafeStringRetrievalFromProperty(root, JsonPropertyNames.CompanyDescription);
-            var ein = parser.SafeStringRetrievalFromProperty(root, JsonPropertyNames.EmployerIdNumber);
-            var entityType = parser.SafeStringRetrievalFromProperty(root, JsonPropertyNames.CompanyEntityType);
+            var addresses = GetAddresses(root);
+            var category = SafeStringRetrievalFromProperty(root, JsonPropertyNames.CompanyCategory);
+            var cik = SafeStringRetrievalFromProperty(root, JsonPropertyNames.CentralIndexKey);
+            var desc = SafeStringRetrievalFromProperty(root, JsonPropertyNames.CompanyDescription);
+            var ein = SafeStringRetrievalFromProperty(root, JsonPropertyNames.EmployerIdNumber);
+            var entityType = SafeStringRetrievalFromProperty(root, JsonPropertyNames.CompanyEntityType);
             HashSet<Exchanges> exchanges;
             try
             {
@@ -36,21 +49,16 @@ namespace SEC_ZIP_Parser.Classes.Json
                 exchanges = null;
             }
 
-            var company = new Company
-            {
-                Addresses = addresses,
-                Category = category,
-                CentralIndexKey = cik,
-                Description = desc,
-                EmployerIdNumber = ein,
-                EntityType = entityType,
-                Exchanges = exchanges
-            };
-            
-            return company;
+            dst.Addresses = addresses;
+            dst.Category = category;
+            dst.CentralIndexKey = cik;
+            dst.Description = desc;
+            dst.EmployerIdNumber = ein;
+            dst.EntityType = entityType;
+            dst.Exchanges = exchanges;
         }
-        
-        #nullable enable
+
+#nullable enable
         public string? SafeStringRetrievalFromProperty(JsonElement el, string propertyName)
         {
             try
@@ -63,7 +71,7 @@ namespace SEC_ZIP_Parser.Classes.Json
             }
         }
 
-        public CompanyAddress[]? GetAddresses(JsonElement root)
+        private static CompanyAddress[]? GetAddresses(JsonElement root)
         {
             var rootStr = root.ToString();
             JsonElement addresses;

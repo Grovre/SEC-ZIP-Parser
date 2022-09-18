@@ -8,11 +8,12 @@ namespace SEC_ZIP_Parser
     {
         public static void Main(string[] args)
         {
-            var dir = "C:\\Users\\Landon\\Downloads\\submissions";
+            const string dir = "C:\\Users\\Landon\\Downloads\\submissions";
             var files = new SubmissionFiles(dir);
             for (var i = 0; i < files.Length; i++)
             {
-                var company = CompanyJsonParser.ParseGeneralSubmissionCompany(files[i]);
+                var parser = new CompanyJsonParser(files[i]);
+                var company = parser.Parse();
                 Console.WriteLine(company.AsString());
             }
         }
