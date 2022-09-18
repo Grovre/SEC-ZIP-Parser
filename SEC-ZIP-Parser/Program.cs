@@ -1,5 +1,6 @@
 ﻿using System;
 using SEC_ZIP_Parser.Classes.Json;
+using SEC_ZIP_Parser.Classes.Json.Files;
 
 namespace SEC_ZIP_Parser
 {
@@ -7,17 +8,13 @@ namespace SEC_ZIP_Parser
     {
         public static void Main(string[] args)
         {
-            var company =
-                CompanyJsonParser.ParseGeneralSubmissionCompany(
-                    "C:\\Users\\Landon\\Downloads\\submissions\\CIK0000019617.json");
-
-            Console.WriteLine(company.Addresses);
-            Console.WriteLine(company.Category);
-            Console.WriteLine(company.Description);
-            Console.WriteLine(company.Exchanges);
-            Console.WriteLine(company.EntityType);
-            Console.WriteLine(company.CentralIndexKey);
-            Console.WriteLine(company.EmployerIdNumber);
+            var dir = "C:\\Users\\Landon\\Downloads\\submissions";
+            var files = new SubmissionFiles(dir);
+            for (var i = 0; i < files.Length; i++)
+            {
+                var company = CompanyJsonParser.ParseGeneralSubmissionCompany(files[i]);
+                Console.WriteLine(company.AsString());
+            }
         }
     }
 }

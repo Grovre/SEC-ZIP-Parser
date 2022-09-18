@@ -1,12 +1,11 @@
 ﻿using SEC_ZIP_Parser.Classes.Enums;
 
-namespace SEC_ZIP_Parser.Classes;
+namespace SEC_ZIP_Parser.Classes.Helpers;
 
 public static class ExchangesHelper
 {
     public static Exchanges Parse(string exchange)
     {
-        Exchanges parsedExchange;
         exchange = exchange.ToLower();
             
         return exchange switch

@@ -1,6 +1,9 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text.Json;
+using SEC_ZIP_Parser.Classes.Enums;
+using SEC_ZIP_Parser.Classes.Helpers;
 
 namespace SEC_ZIP_Parser.Classes.Json
 {
@@ -14,16 +17,24 @@ namespace SEC_ZIP_Parser.Classes.Json
             var parser = new CompanyJsonParser();
             
             var addresses = parser.GetAddresses(root);
-            var category = root.GetProperty(JsonPropertyNames.CompanyCategory).GetString();
-            var cik = root.GetProperty(JsonPropertyNames.CentralIndexKey).GetString();
-            var desc = root.GetProperty(JsonPropertyNames.CompanyDescription).GetString();
-            var ein = root.GetProperty(JsonPropertyNames.EmployerIdNumber).GetString();
-            var entityType = root.GetProperty(JsonPropertyNames.CompanyEntityType).GetString();
-            var exchanges = root.GetProperty(JsonPropertyNames.Exchanges)
-                .EnumerateArray()
-                .Select(el => el.ToString())
-                .Select(ExchangesHelper.Parse)
-                .ToHashSet();
+            var category = parser.SafeStringRetrievalFromProperty(root, JsonPropertyNames.CompanyCategory);
+            var cik = parser.SafeStringRetrievalFromProperty(root, JsonPropertyNames.CentralIndexKey);
+            var desc = parser.SafeStringRetrievalFromProperty(root, JsonPropertyNames.CompanyDescription);
+            var ein = parser.SafeStringRetrievalFromProperty(root, JsonPropertyNames.EmployerIdNumber);
+            var entityType = parser.SafeStringRetrievalFromProperty(root, JsonPropertyNames.CompanyEntityType);
+            HashSet<Exchanges> exchanges;
+            try
+            {
+                exchanges = root.GetProperty(JsonPropertyNames.Exchanges)
+                    .EnumerateArray()
+                    .Select(el => el.ToString())
+                    .Select(ExchangesHelper.Parse)
+                    .ToHashSet();
+            }
+            catch (KeyNotFoundException)
+            {
+                exchanges = null;
+            }
 
             var company = new Company
             {
@@ -38,10 +49,32 @@ namespace SEC_ZIP_Parser.Classes.Json
             
             return company;
         }
-
-        public CompanyAddress[] GetAddresses(JsonElement root)
+        
+        #nullable enable
+        public string? SafeStringRetrievalFromProperty(JsonElement el, string propertyName)
         {
-            var addresses = root.GetProperty(JsonPropertyNames.Addresses);
+            try
+            {
+                return el.GetProperty(propertyName).GetString();
+            }
+            catch (KeyNotFoundException)
+            {
+                return null;
+            }
+        }
+
+        public CompanyAddress[]? GetAddresses(JsonElement root)
+        {
+            var rootStr = root.ToString();
+            JsonElement addresses;
+            try
+            {
+                addresses = root.GetProperty(JsonPropertyNames.Addresses);
+            }
+            catch (KeyNotFoundException)
+            {
+                return null;
+            }
             return addresses.EnumerateObject().Select(CompanyAddressHelper.ReadJsonElement).ToArray();
         }
     }

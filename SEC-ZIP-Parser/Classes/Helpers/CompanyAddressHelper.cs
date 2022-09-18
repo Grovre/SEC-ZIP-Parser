@@ -2,7 +2,7 @@
 using SEC_ZIP_Parser.Classes.Enums;
 using SEC_ZIP_Parser.Classes.Json;
 
-namespace SEC_ZIP_Parser.Classes;
+namespace SEC_ZIP_Parser.Classes.Helpers;
 
 public static class CompanyAddressHelper
 {
