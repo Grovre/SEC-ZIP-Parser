@@ -10,11 +10,12 @@ namespace SEC_ZIP_Parser.Classes.Json.Files;
 
 public readonly struct SubmissionFiles
 {
-    private readonly string[] _filePaths;
+    
+    private readonly IEnumerable<string> _filePaths;
 
-    public string this[int i] => _filePaths[i];
+    public IEnumerable<string> FilePaths => _filePaths;
 
-    public int Length => _filePaths.Length;
+    public int Length => _filePaths.Count();
 
     public SubmissionFiles(string directoryPath) : this()
     {
@@ -24,6 +25,6 @@ public readonly struct SubmissionFiles
             .AsUnordered()
             .Where(path => path.EndsWith(".json"))
             .Where(path => path.Contains("submissions"))
-            .ToArray();
+            .AsSequential();
     }
 }

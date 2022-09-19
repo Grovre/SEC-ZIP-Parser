@@ -1,4 +1,5 @@
 ﻿using System;
+using SEC_ZIP_Parser.Classes;
 using SEC_ZIP_Parser.Classes.Json;
 using SEC_ZIP_Parser.Classes.Json.Files;
 
@@ -10,11 +11,12 @@ namespace SEC_ZIP_Parser
         {
             const string dir = "C:\\Users\\Landon\\Downloads\\submissions";
             var files = new SubmissionFiles(dir);
-            for (var i = 0; i < files.Length; i++)
+            var enumerator = files.FilePaths;
+            foreach (var path in enumerator)
             {
-                var parser = new CompanyJsonParser(files[i]);
-                var company = parser.Parse();
-                Console.WriteLine(company.AsString());
+                var parser = new CompanyJsonParser(path);
+                var co = parser.Parse();
+                Console.WriteLine(co.AsString());
             }
         }
     }

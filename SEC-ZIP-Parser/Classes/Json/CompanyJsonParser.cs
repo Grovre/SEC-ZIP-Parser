@@ -10,7 +10,7 @@ namespace SEC_ZIP_Parser.Classes.Json
     public class CompanyJsonParser
     {
         public string JsonFilePath { get; }
-
+        
         public CompanyJsonParser(string jsonPath)
         {
             JsonFilePath = jsonPath;
@@ -25,7 +25,7 @@ namespace SEC_ZIP_Parser.Classes.Json
 
         public void ParseTo(ref Company dst)
         {
-            var json = File.ReadAllLines(JsonFilePath)[0];
+            var json = File.ReadAllText(JsonFilePath);
             var doc = JsonDocument.Parse(json);
             var root = doc.RootElement;
             
@@ -82,7 +82,6 @@ namespace SEC_ZIP_Parser.Classes.Json
 
         private static CompanyAddress[]? GetAddresses(JsonElement root)
         {
-            var rootStr = root.ToString();
             JsonElement addresses;
             try
             {
