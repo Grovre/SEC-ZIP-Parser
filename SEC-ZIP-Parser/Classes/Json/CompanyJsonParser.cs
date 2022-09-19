@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Text.Json;
+using SEC_ZIP_Parser.Classes.CompanyClasses;
 using SEC_ZIP_Parser.Classes.Enums;
 using SEC_ZIP_Parser.Classes.Helpers;
 

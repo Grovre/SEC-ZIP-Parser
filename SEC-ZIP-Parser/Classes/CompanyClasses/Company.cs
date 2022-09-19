@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using SEC_ZIP_Parser.Classes.Enums;
 
-namespace SEC_ZIP_Parser.Classes
+namespace SEC_ZIP_Parser.Classes.CompanyClasses
 {
     public class Company
     {

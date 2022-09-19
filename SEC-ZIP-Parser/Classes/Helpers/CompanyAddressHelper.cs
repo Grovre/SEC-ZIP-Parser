@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using SEC_ZIP_Parser.Classes.CompanyClasses;
 using SEC_ZIP_Parser.Classes.Enums;
 using SEC_ZIP_Parser.Classes.Json;
 

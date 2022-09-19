@@ -1,9 +1,6 @@
-﻿using System.Text.Json;
-using SEC_ZIP_Parser.Classes;
-using SEC_ZIP_Parser.Classes.Enums;
-using SEC_ZIP_Parser.Classes.Json;
+﻿using SEC_ZIP_Parser.Classes.Enums;
 
-namespace SEC_ZIP_Parser.Classes
+namespace SEC_ZIP_Parser.Classes.CompanyClasses
 {
     public class CompanyAddress
     {
