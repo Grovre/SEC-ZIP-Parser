@@ -35,6 +35,11 @@ namespace SEC_ZIP_Parser.Classes.Json
             var desc = SafeStringRetrievalFromProperty(root, JsonPropertyNames.CompanyDescription);
             var ein = SafeStringRetrievalFromProperty(root, JsonPropertyNames.EmployerIdNumber);
             var entityType = SafeStringRetrievalFromProperty(root, JsonPropertyNames.CompanyEntityType);
+            var name = SafeStringRetrievalFromProperty(root, JsonPropertyNames.CompanyName);
+            var sic = SafeStringRetrievalFromProperty(root, JsonPropertyNames.StandardIndustrialClassification);
+            var sicDesc =
+                SafeStringRetrievalFromProperty(root, JsonPropertyNames.StandardIndustrialClassificationDescription);
+            var phone = SafeStringRetrievalFromProperty(root, JsonPropertyNames.CompanyPhone);
             HashSet<Exchanges> exchanges;
             try
             {
@@ -56,6 +61,10 @@ namespace SEC_ZIP_Parser.Classes.Json
             dst.EmployerIdNumber = ein;
             dst.EntityType = entityType;
             dst.Exchanges = exchanges;
+            dst.Name = name;
+            dst.StandardIndustrialClassification = sic;
+            dst.StandardIndustrialClassificationDesc = sicDesc;
+            dst.CompanyPhone = phone;
         }
 
 #nullable enable

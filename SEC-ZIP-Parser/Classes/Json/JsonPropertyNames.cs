@@ -29,5 +29,9 @@
         public const string FilingForms = "form";
         public const string FilingItems = "items";
         public const string Tickers = "tickers";
+        public const string CompanyName = "name";
+        public const string CompanyPhone = "phone";
+        public const string StandardIndustrialClassification = "sic";
+        public const string StandardIndustrialClassificationDescription = "sicDescription";
     }
 }

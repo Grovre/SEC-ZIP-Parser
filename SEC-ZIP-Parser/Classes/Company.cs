@@ -9,6 +9,14 @@ namespace SEC_ZIP_Parser.Classes
     {
         public CompanyAddress[]? Addresses { get; set; }
 
+        public string? Name { get; set; }
+
+        public string? StandardIndustrialClassification { get; set; }
+        
+        public string? StandardIndustrialClassificationDesc { get; set; }
+
+        public string? CompanyPhone { get; set; }
+
         public string? Category { get; set; }
 
         public string? CentralIndexKey { get; set; }
@@ -24,13 +32,17 @@ namespace SEC_ZIP_Parser.Classes
         public string AsString()
         {
             StringBuilder sb = new();
-            sb.Append("Addresses: ").Append(Addresses).AppendLine()
+            sb.Append("Name: ").Append(Name).AppendLine()
+                .Append("Phone: ").Append(CompanyPhone).AppendLine()
+                .Append("Addresses: ").Append(Addresses).AppendLine()
                 .Append("Category: ").Append(Category).AppendLine()
                 .Append("CIK: ").Append(CentralIndexKey).AppendLine()
                 .Append("Desc: ").Append(Description).AppendLine()
                 .Append("EIN: ").Append(EmployerIdNumber).AppendLine()
                 .Append("Entity Type: ").Append(EntityType).AppendLine()
-                .Append("Exchanges: ").Append(Exchanges).AppendLine();
+                .Append("Exchanges: ").Append(Exchanges).AppendLine()
+                .Append("SIC: ").Append(StandardIndustrialClassification).AppendLine()
+                .Append("SIC Desc: ").Append(StandardIndustrialClassificationDesc).AppendLine();
             return sb.ToString();
         }
     }
