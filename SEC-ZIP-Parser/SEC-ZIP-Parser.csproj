@@ -34,6 +34,9 @@
         <WarningLevel>4</WarningLevel>
     </PropertyGroup>
     <ItemGroup>
+        <Reference Include="IndexRange, Version=1.0.2.0, Culture=neutral, PublicKeyToken=35e6a3c4212514c6, processorArchitecture=MSIL">
+          <HintPath>..\packages\IndexRange.1.0.2\lib\net47\IndexRange.dll</HintPath>
+        </Reference>
         <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
           <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.7.0.0-rc.1.22426.10\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
         </Reference>
@@ -76,6 +79,7 @@
         <Compile Include="Classes\Enums\Exchanges.cs" />
         <Compile Include="Classes\Helpers\CompanyAddressHelper.cs" />
         <Compile Include="Classes\Helpers\ExchangesHelper.cs" />
+        <Compile Include="Classes\Helpers\FileHelper.cs" />
         <Compile Include="Classes\Json\CompanyJsonParser.cs" />
         <Compile Include="Classes\Json\Files\SubmissionFiles.cs" />
         <Compile Include="Classes\Json\JsonPropertyNames.cs" />

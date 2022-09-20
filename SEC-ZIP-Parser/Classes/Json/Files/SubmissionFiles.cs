@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Runtime.CompilerServices;
+using SEC_ZIP_Parser.Classes.Helpers;
 
 namespace SEC_ZIP_Parser.Classes.Json.Files;
 
@@ -25,6 +26,7 @@ public readonly struct SubmissionFiles
             .AsUnordered()
             .Where(path => path.EndsWith(".json"))
             .Where(path => path.Contains("submissions"))
+            .Where(path => !FileHelper.GetFileName(path).Contains("submissions"))
             .AsSequential();
     }
 }
