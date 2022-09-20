@@ -12,8 +12,8 @@ public static class CompanyAddressHelper
         var addressPropertyName = businessOrMailingElement.ToString();
         var addressType = addressPropertyName switch
         {
-            JsonPropertyNames.BusinessAddress => AddressType.Business,
-            JsonPropertyNames.MailingAddress => AddressType.Mailing,
+            CompanyPropertyNames.BusinessAddress => AddressType.Business,
+            CompanyPropertyNames.MailingAddress => AddressType.Mailing,
             _ => AddressType.Other
         };
         if (addressType == AddressType.Other)
@@ -23,11 +23,11 @@ public static class CompanyAddressHelper
         CompanyAddress businessAddress = new()
         {
             Type = addressType,
-            City = addressElement.GetProperty(JsonPropertyNames.City).GetString(),
-            StateOrCountry = addressElement.GetProperty(JsonPropertyNames.StateOrCountry).GetString(),
-            Street1 = addressElement.GetProperty(JsonPropertyNames.Street1).GetString(),
-            Street2 = addressElement.GetProperty(JsonPropertyNames.Street2).GetString(),
-            ZipCode = addressElement.GetProperty(JsonPropertyNames.Zip).GetString()
+            City = addressElement.GetProperty(CompanyPropertyNames.City).GetString(),
+            StateOrCountry = addressElement.GetProperty(CompanyPropertyNames.StateOrCountry).GetString(),
+            Street1 = addressElement.GetProperty(CompanyPropertyNames.Street1).GetString(),
+            Street2 = addressElement.GetProperty(CompanyPropertyNames.Street2).GetString(),
+            ZipCode = addressElement.GetProperty(CompanyPropertyNames.Zip).GetString()
         };
     
         return businessAddress;

@@ -1,6 +1,6 @@
 ﻿namespace SEC_ZIP_Parser.Classes.Json
 {
-    internal struct JsonPropertyNames
+    internal struct CompanyPropertyNames
     {
         public const string Addresses = "addresses";
         public const string BusinessAddress = "business";

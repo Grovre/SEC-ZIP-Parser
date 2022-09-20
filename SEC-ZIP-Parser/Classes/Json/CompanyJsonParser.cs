@@ -31,20 +31,20 @@ namespace SEC_ZIP_Parser.Classes.Json
             var root = doc.RootElement;
             
             var addresses = GetAddresses(root);
-            var category = SafeStringRetrievalFromProperty(root, JsonPropertyNames.CompanyCategory);
-            var cik = SafeStringRetrievalFromProperty(root, JsonPropertyNames.CentralIndexKey);
-            var desc = SafeStringRetrievalFromProperty(root, JsonPropertyNames.CompanyDescription);
-            var ein = SafeStringRetrievalFromProperty(root, JsonPropertyNames.EmployerIdNumber);
-            var entityType = SafeStringRetrievalFromProperty(root, JsonPropertyNames.CompanyEntityType);
-            var name = SafeStringRetrievalFromProperty(root, JsonPropertyNames.CompanyName);
-            var sic = SafeStringRetrievalFromProperty(root, JsonPropertyNames.StandardIndustrialClassification);
+            var category = SafeStringRetrievalFromProperty(root, CompanyPropertyNames.CompanyCategory);
+            var cik = SafeStringRetrievalFromProperty(root, CompanyPropertyNames.CentralIndexKey);
+            var desc = SafeStringRetrievalFromProperty(root, CompanyPropertyNames.CompanyDescription);
+            var ein = SafeStringRetrievalFromProperty(root, CompanyPropertyNames.EmployerIdNumber);
+            var entityType = SafeStringRetrievalFromProperty(root, CompanyPropertyNames.CompanyEntityType);
+            var name = SafeStringRetrievalFromProperty(root, CompanyPropertyNames.CompanyName);
+            var sic = SafeStringRetrievalFromProperty(root, CompanyPropertyNames.StandardIndustrialClassification);
             var sicDesc =
-                SafeStringRetrievalFromProperty(root, JsonPropertyNames.StandardIndustrialClassificationDescription);
-            var phone = SafeStringRetrievalFromProperty(root, JsonPropertyNames.CompanyPhone);
+                SafeStringRetrievalFromProperty(root, CompanyPropertyNames.StandardIndustrialClassificationDescription);
+            var phone = SafeStringRetrievalFromProperty(root, CompanyPropertyNames.CompanyPhone);
             HashSet<Exchanges> exchanges;
             try
             {
-                exchanges = root.GetProperty(JsonPropertyNames.Exchanges)
+                exchanges = root.GetProperty(CompanyPropertyNames.Exchanges)
                     .EnumerateArray()
                     .Select(el => el.ToString())
                     .Select(ExchangesHelper.Parse)
@@ -86,7 +86,7 @@ namespace SEC_ZIP_Parser.Classes.Json
             JsonElement addresses;
             try
             {
-                addresses = root.GetProperty(JsonPropertyNames.Addresses);
+                addresses = root.GetProperty(CompanyPropertyNames.Addresses);
             }
             catch (KeyNotFoundException)
             {

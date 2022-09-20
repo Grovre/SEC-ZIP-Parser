@@ -82,7 +82,7 @@
         <Compile Include="Classes\Helpers\FileHelper.cs" />
         <Compile Include="Classes\Json\CompanyJsonParser.cs" />
         <Compile Include="Classes\Json\Files\SubmissionFiles.cs" />
-        <Compile Include="Classes\Json\JsonPropertyNames.cs" />
+        <Compile Include="Classes\Json\CompanyPropertyNames.cs" />
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
