@@ -7,9 +7,19 @@ namespace SEC_ZIP_Parser.Classes.Json.Parsing;
 
 public abstract class JsonParser<T> : IParser<T>
 {
-    public abstract void ParseTo(ref T dst);
+    public string JsonFilePath { get; }
     
-    public SafePropertyValue<string> SafeStringRetrievalFromProperty(JsonElement root, string[] propertyNames = null)
+    public abstract T Parse();
+    
+    public abstract void ParseTo(ref T dst);
+
+    protected JsonParser(string jsonFilePath)
+    {
+        JsonFilePath = jsonFilePath;
+    }
+
+#nullable enable
+    public SafePropertyValue<string> SafeStringRetrievalFromProperty(JsonElement root, params string[]? propertyNames)
     {
         try
         {
@@ -27,7 +37,7 @@ public abstract class JsonParser<T> : IParser<T>
         }
     }
     
-    public SafePropertyValue<int> SafeIntRetrievalFromProperty(JsonElement root, string[] propertyNames = null)
+    public SafePropertyValue<int> SafeIntRetrievalFromProperty(JsonElement root, params string[]? propertyNames)
     {
         try
         {

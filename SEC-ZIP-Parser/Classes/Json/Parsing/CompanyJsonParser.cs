@@ -11,14 +11,12 @@ namespace SEC_ZIP_Parser.Classes.Json.Parsing
 {
     public class CompanyJsonParser : JsonParser<Company>
     {
-        public string JsonFilePath { get; }
-        
-        public CompanyJsonParser(string jsonPath)
+        public CompanyJsonParser(string jsonPath) : base(jsonPath)
         {
-            JsonFilePath = jsonPath;
+            // Copy and paste master
         }
 
-        public Company Parse()
+        public override Company Parse()
         {
             var co = new Company();
             ParseTo(ref co);
@@ -32,16 +30,16 @@ namespace SEC_ZIP_Parser.Classes.Json.Parsing
             var root = doc.RootElement;
             
             var addresses = GetAddresses(root);
-            var category = SafeStringRetrievalFromProperty(root, CompanyPropertyNames.CompanyCategory);
-            var cik = SafeStringRetrievalFromProperty(root, CompanyPropertyNames.CentralIndexKey);
-            var desc = SafeStringRetrievalFromProperty(root, CompanyPropertyNames.CompanyDescription);
-            var ein = SafeStringRetrievalFromProperty(root, CompanyPropertyNames.EmployerIdNumber);
-            var entityType = SafeStringRetrievalFromProperty(root, CompanyPropertyNames.CompanyEntityType);
-            var name = SafeStringRetrievalFromProperty(root, CompanyPropertyNames.CompanyName);
-            var sic = SafeStringRetrievalFromProperty(root, CompanyPropertyNames.StandardIndustrialClassification);
+            var category = SafeStringRetrievalFromProperty(root, CompanyPropertyNames.CompanyCategory).RetrievedValue;
+            var cik = SafeStringRetrievalFromProperty(root, CompanyPropertyNames.CentralIndexKey).RetrievedValue;
+            var desc = SafeStringRetrievalFromProperty(root, CompanyPropertyNames.CompanyDescription).RetrievedValue;
+            var ein = SafeStringRetrievalFromProperty(root, CompanyPropertyNames.EmployerIdNumber).RetrievedValue;
+            var entityType = SafeStringRetrievalFromProperty(root, CompanyPropertyNames.CompanyEntityType).RetrievedValue;
+            var name = SafeStringRetrievalFromProperty(root, CompanyPropertyNames.CompanyName).RetrievedValue;
+            var sic = SafeStringRetrievalFromProperty(root, CompanyPropertyNames.StandardIndustrialClassification).RetrievedValue;
             var sicDesc =
-                SafeStringRetrievalFromProperty(root, CompanyPropertyNames.StandardIndustrialClassificationDescription);
-            var phone = SafeStringRetrievalFromProperty(root, CompanyPropertyNames.CompanyPhone);
+                SafeStringRetrievalFromProperty(root, CompanyPropertyNames.StandardIndustrialClassificationDescription).RetrievedValue;
+            var phone = SafeStringRetrievalFromProperty(root, CompanyPropertyNames.CompanyPhone).RetrievedValue;
             HashSet<Exchanges> exchanges;
             try
             {
@@ -68,20 +66,7 @@ namespace SEC_ZIP_Parser.Classes.Json.Parsing
             dst.StandardIndustrialClassificationDesc = sicDesc;
             dst.CompanyPhone = phone;
         }
-
-#nullable enable
-        public string? SafeStringRetrievalFromProperty(JsonElement el, string propertyName)
-        {
-            try
-            {
-                return el.GetProperty(propertyName).GetString();
-            }
-            catch (KeyNotFoundException)
-            {
-                return null;
-            }
-        }
-
+        
         private static CompanyAddress[]? GetAddresses(JsonElement root)
         {
             JsonElement addresses;
