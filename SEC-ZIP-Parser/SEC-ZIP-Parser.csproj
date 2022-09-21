@@ -80,9 +80,14 @@
         <Compile Include="Classes\Helpers\CompanyAddressHelper.cs" />
         <Compile Include="Classes\Helpers\ExchangesHelper.cs" />
         <Compile Include="Classes\Helpers\FileHelper.cs" />
-        <Compile Include="Classes\Json\CompanyJsonParser.cs" />
+        <Compile Include="Classes\Interfaces\IParser.cs" />
         <Compile Include="Classes\Json\Files\SubmissionFiles.cs" />
         <Compile Include="Classes\Json\CompanyPropertyNames.cs" />
+        <Compile Include="Classes\Json\FilingsPropertyNames.cs" />
+        <Compile Include="Classes\Json\Parsing\CompanyJsonParser.cs" />
+        <Compile Include="Classes\Json\Parsing\FilingsJsonParser.cs" />
+        <Compile Include="Classes\Json\Parsing\JsonParser.cs" />
+        <Compile Include="Classes\Json\Parsing\SafePropertyValue.cs" />
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>

@@ -29,6 +29,8 @@ namespace SEC_ZIP_Parser.Classes.CompanyClasses
 
         public HashSet<Exchanges>? Exchanges { get; set; }
 
+        public CompanyFilings Filings { get; set; }
+
         public string AsString()
         {
             StringBuilder sb = new();

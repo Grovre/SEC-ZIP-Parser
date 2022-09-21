@@ -5,10 +5,11 @@ using System.Text.Json;
 using SEC_ZIP_Parser.Classes.CompanyClasses;
 using SEC_ZIP_Parser.Classes.Enums;
 using SEC_ZIP_Parser.Classes.Helpers;
+using SEC_ZIP_Parser.Classes.Interfaces;
 
-namespace SEC_ZIP_Parser.Classes.Json
+namespace SEC_ZIP_Parser.Classes.Json.Parsing
 {
-    public class CompanyJsonParser
+    public class CompanyJsonParser : JsonParser<Company>
     {
         public string JsonFilePath { get; }
         
@@ -24,7 +25,7 @@ namespace SEC_ZIP_Parser.Classes.Json
             return co;
         }
 
-        public void ParseTo(ref Company dst)
+        public override void ParseTo(ref Company dst)
         {
             var json = File.ReadAllText(JsonFilePath);
             var doc = JsonDocument.Parse(json);
@@ -92,6 +93,7 @@ namespace SEC_ZIP_Parser.Classes.Json
             {
                 return null;
             }
+            
             return addresses.EnumerateObject().Select(CompanyAddressHelper.ReadJsonElement).ToArray();
         }
     }
