@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net;
-using System.Runtime.CompilerServices;
 using SEC_ZIP_Parser.Classes.Helpers;
 
 namespace SEC_ZIP_Parser.Classes.Json.Files;

@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Linq;
-using SEC_ZIP_Parser.Classes;
 using SEC_ZIP_Parser.Classes.CompanyClasses;
 using SEC_ZIP_Parser.Classes.Json;
 using SEC_ZIP_Parser.Classes.Json.Files;
-using SEC_ZIP_Parser.Classes.Json.Parsing;
 
 namespace SEC_ZIP_Parser
 {

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Text;
+﻿using System.Text;
 
 namespace SEC_ZIP_Parser.Classes.Helpers;
 

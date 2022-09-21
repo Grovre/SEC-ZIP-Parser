@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SEC_ZIP_Parser.Classes.Json.Parsing;
+namespace SEC_ZIP_Parser.Classes.Json;
 
 public class SafePropertyValue<T>
 {

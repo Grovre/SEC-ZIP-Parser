@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text.Json;
 using SEC_ZIP_Parser.Classes.Interfaces;
 
-namespace SEC_ZIP_Parser.Classes.Json.Parsing;
+namespace SEC_ZIP_Parser.Classes.Json;
 
 public abstract class JsonParser<T> : IParser<T>
 {

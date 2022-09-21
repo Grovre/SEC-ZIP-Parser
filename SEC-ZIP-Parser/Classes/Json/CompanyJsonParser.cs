@@ -5,9 +5,8 @@ using System.Text.Json;
 using SEC_ZIP_Parser.Classes.CompanyClasses;
 using SEC_ZIP_Parser.Classes.Enums;
 using SEC_ZIP_Parser.Classes.Helpers;
-using SEC_ZIP_Parser.Classes.Interfaces;
 
-namespace SEC_ZIP_Parser.Classes.Json.Parsing
+namespace SEC_ZIP_Parser.Classes.Json
 {
     public class CompanyJsonParser : JsonParser<Company>
     {
