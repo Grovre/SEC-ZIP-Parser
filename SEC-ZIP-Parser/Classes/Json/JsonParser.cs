@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Text.Json;
 using SEC_ZIP_Parser.Classes.Interfaces;
 
@@ -54,7 +55,14 @@ public abstract class JsonParser<T> : IParser<T>
         }
     }
 
-    private JsonElement AdvanceElementThroughProperties(JsonElement root, string[] propertyNames)
+    protected JsonElement GetJsonRootElement()
+    {
+        var jsonStream = File.OpenRead(JsonFilePath);
+        var doc = JsonDocument.Parse(jsonStream);
+        return doc.RootElement;
+    }
+
+    protected JsonElement AdvanceElementThroughProperties(JsonElement root, string[] propertyNames)
     {
         foreach (var propertyName in propertyNames)
         {

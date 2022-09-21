@@ -24,9 +24,7 @@ namespace SEC_ZIP_Parser.Classes.Json
 
         public override void ParseTo(ref Company dst)
         {
-            var jsonStream = File.OpenRead(JsonFilePath);
-            var doc = JsonDocument.Parse(jsonStream);
-            var root = doc.RootElement;
+            var root = GetJsonRootElement();
             
             var addresses = GetAddresses(root);
             var category = SafeStringRetrievalFromProperty(root, CompanyPropertyNames.CompanyCategory).RetrievedValue;
